@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-settings-cached (2.9.4)
+    rails-app-settings (2.9.4)
       activerecord (>= 5.0.0)
       railties (>= 5.0.0)
 
@@ -146,7 +146,7 @@ DEPENDENCIES
   activerecord (~> 8.0.0.beta1)
   minitest
   pg
-  rails-settings-cached!
+  rails-app-settings!
   railties (~> 8.0.0.beta1)
   rake
   rubocop

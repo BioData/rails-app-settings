@@ -1,15 +1,15 @@
-class CreateSettings < ActiveRecord::Migration<%= migration_version %>
+class CreateAppSettings < ActiveRecord::Migration<%= migration_version %>
   def self.up
-    create_table :settings do |t|
+    create_table :app_settings do |t|
       t.string  :var,        null: false
       t.text    :value,      null: true
       t.timestamps
     end
 
-    add_index :settings, %i(var), unique: true
+    add_index :app_settings, %i(var), unique: true
   end
 
   def self.down
-    drop_table :settings
+    drop_table :app_settings
   end
 end

@@ -3,13 +3,13 @@
 require "rails/generators"
 require "rails/generators/migration"
 
-module RailsSettings
+module RailsAppSettings
   class InstallGenerator < Rails::Generators::NamedBase
-    namespace "settings:install"
-    desc "Generate RailsSettings files."
+    namespace "app_settings:install"
+    desc "Generate RailsAppSettings files."
     include Rails::Generators::Migration
 
-    argument :name, type: :string, default: "setting"
+    argument :name, type: :string, default: "app_setting"
 
     source_root File.expand_path("templates", __dir__)
 
@@ -38,7 +38,7 @@ module RailsSettings
 
     def install_setting
       template "model.rb", File.join("app/models", class_path, "#{file_name}.rb")
-      migration_template "migration.rb", "db/migrate/create_settings.rb", migration_version: migration_version
+      migration_template "migration.rb", "db/migrate/create_app_settings.rb", migration_version: migration_version
     end
 
     def rails_version_major
