@@ -6,7 +6,7 @@ class Create<%= class_name.pluralize %> < ActiveRecord::Migration<%= migration_v
       t.timestamps
     end
 
-    add_index :<%= plural_name %>, %i(var), unique: true
+    add_index :<%= plural_name %>, %i[var], unique: true
   end
 
   def self.down
