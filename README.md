@@ -4,26 +4,43 @@ The best solution for store global settings in Rails applications.
 
 This gem will make managing a table of а global key, value pairs easy. Think of it like a global Hash stored in your database, that uses simple ActiveRecord like methods for manipulation. Keep track of any global setting that you don't want to hard code into your Rails application.
 
-[![Gem Version](https://badge.fury.io/rb/rails-app-settings.svg)](https://rubygems.org/gems/rails-app-settings) [![build](https://github.com/huacnlee/rails-app-settings/workflows/build/badge.svg)](https://github.com/huacnlee/rails-app-settings/actions?query=workflow%3Abuild)
+[![Gem Version](https://badge.fury.io/rb/rails-app-settings.svg)](https://rubygems.org/gems/rails-app-settings) [![build](https://github.com/roy-gal-git/rails-app-settings/workflows/build/badge.svg)](https://github.com/roy-gal-git/rails-app-settings/actions?query=workflow%3Abuild)
 
 ## Installation
 
 Edit your Gemfile:
 
 ```bash
-$ bundle add rails-app-settings
+bundle add rails-app-settings
 ```
 
 Generate your app settings:
 
 ```bash
-$ rails g app_settings:install
-
-# Or use a custom name:
-$ rails g app_settings:install AppConfig
+rails g app_settings:install
 ```
 
-You will get `app/models/app_setting.rb`
+Will create:
+- `app/models/app_setting.rb`
+- `db/migrate/create_app_setting.rb`
+
+Or use a custom name for the model (which will also affect the table name):
+
+```bash
+rails g app_settings:install AppConfig
+```
+
+Will create:
+- `app/models/app_config.rb`
+- `db/migrate/create_app_configs.rb`
+
+## Important Naming Consideration
+
+### Avoid Naming Your Model `Settings`
+
+If you are using both this gem (`rails-app-settings`) and the [`ledermann/rails-settings`](https://github.com/ledermann/rails-settings) gem in your project, **do not** name your model `Settings`.
+
+The `ledermann/rails-settings` gem already defines a model named `Settings`, and using the same name for your model will result in **namespace conflicts**. This could lead to unexpected behavior, bugs, and errors in your application.
 
 ```rb
 class AppSetting < RailsAppSettings::Base
@@ -61,10 +78,10 @@ You must use the `field` method to statement the app setting keys, otherwise you
 
 The `scope` method allows you to group the keys for admin UI.
 
-Now just put that migration in the database with:
+Now just run that migration:
 
 ```bash
-$ rails db:migrate
+rails db:migrate
 ```
 
 ## Usage
@@ -75,7 +92,7 @@ The syntax is easy. First, let's create some settings to keep track of:
 irb > AppSetting.host
 "http://example.com"
 irb > AppSetting.app_name
-"Rails Settings"
+"Rails App Settings"
 irb > AppSetting.app_name = "Rails App Settings"
 irb > AppSetting.app_name
 "Rails App Settings"
@@ -153,7 +170,7 @@ AppSetting.readonly_keys
 AppSetting.get_field("host")
 => { scope: :application, key: "host", type: :string, default: "http://example.com", readonly: true }
 AppSetting.get_field("app_name")
-=> { scope: :application, key: "app_name", type: :string, default: "Rails Settings", readonly: false }
+=> { scope: :application, key: "app_name", type: :string, default: "Rails App Settings", readonly: false }
 AppSetting.get_field(:user_limits)
 => { scope: :limits, key: "user_limits", type: :integer, default: 20, readonly: false }
 # Get field options

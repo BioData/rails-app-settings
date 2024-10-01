@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Setting < RailsAppSettings::Base
+class AppSetting < RailsAppSettings::Base
   cache_prefix { "v1" }
 
   scope :ordered, -> { order(id: :desc) }
