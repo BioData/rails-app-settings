@@ -1,4 +1,4 @@
-class Create<%= class_name %> < ActiveRecord::Migration<%= migration_version %>
+class Create<%= class_name.pluralize %> < ActiveRecord::Migration<%= migration_version %>
   def self.up
     create_table :<%= plural_name%> do |t|
       t.string  :var,        null: false
