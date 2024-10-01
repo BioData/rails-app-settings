@@ -9,7 +9,6 @@ module RailsAppSettings
 
   class Base < ActiveRecord::Base
     PROTECTED_KEYS = %w[var value]
-    self.table_name = table_name_prefix + "app_settings"
 
     # get the value field, YAML decoded
     def value
