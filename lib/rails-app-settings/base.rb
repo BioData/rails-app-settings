@@ -9,6 +9,7 @@ module RailsAppSettings
 
   class Base < ActiveRecord::Base
     PROTECTED_KEYS = %w[var value]
+    self.abstract_class = true
 
     # get the value field, YAML decoded
     def value
