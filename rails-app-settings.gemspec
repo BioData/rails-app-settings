@@ -4,25 +4,24 @@ $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "rails-app-settings/version"
 
 Gem::Specification.new do |s|
-  s.name = "rails-settings-cached"
+  s.name = "rails-app-settings"
   s.version = RailsAppSettings.version
-  s.authors = ["Jason Lee"]
-  s.email = "huacnlee@gmail.com"
+  s.authors = ["Roy Gal"]
+  s.email = "roygal@gmail.com"
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  s.homepage = "https://github.com/huacnlee/rails-settings-cached"
+  s.homepage = "https://github.com/BioData/rails-app-settings"
   s.require_paths = ["lib"]
   s.license = "MIT"
 
   s.required_ruby_version = ">= 2.5"
-  s.summary = "The best solution for store global settings in Rails applications."
+  s.summary = "The best global settings solution for Rails applications."
   s.description = "
-  The best solution for store global settings in Rails applications.
+  The best global settings solution for Rails applications.
 
-  This gem will managing a table of а global key, value pairs easy. Think of it like a
-  global Hash stored in your database, that uses simple ActiveRecord like methods for manipulation.
-
-  Keep track of any global setting that you dont want to hard code into your rails app.
-  You can store any kind of object.  Strings, numbers, arrays, or any object.
+  This gem manages a database table of key value pairs.
+  Think of it like a global Hash stored in your database, that uses simple ActiveRecord like methods for manipulation.
+  Every field can be configured to have a specific type.
+  It also has a configurable caching mechanism that uses your Rails app cache store by default.
   "
 
   s.add_dependency "railties", ">= 5.0.0"
