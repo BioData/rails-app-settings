@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module RailsSettings
+module RailsAppSettings
   class Base < ActiveRecord::Base
     PROTECTED_KEYS = %w[var value]
-    self.table_name = table_name_prefix + "settings"
+    self.abstract_class = true
 
     after_commit :clear_cache, on: %i[create update destroy]
 
@@ -84,7 +84,7 @@ module RailsSettings
 
         raise ProtectedKeyError.new(key) if PROTECTED_KEYS.include?(key)
 
-        field = ::RailsSettings::Fields::Base.generate(
+        field = ::RailsAppSettings::Fields::Base.generate(
           scope: @scope, key: key, default: default,
           type: type, readonly: readonly, options: opts,
           separator: separator, parent: self
@@ -132,7 +132,7 @@ module RailsSettings
       end
 
       def cache_storage
-        RailsSettings.config.cache_storage
+        RailsAppSettings.config.cache_storage
       end
     end
   end
