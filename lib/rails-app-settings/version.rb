@@ -3,7 +3,7 @@
 module RailsAppSettings
   class << self
     def version
-      "2.9.4"
+      "1.0.0"
     end
   end
 end

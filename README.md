@@ -1,17 +1,17 @@
-# Rails Settings Cached
+# Rails App Settings
 
 The best solution for store global settings in Rails applications.
 
 This gem will make managing a table of а global key, value pairs easy. Think of it like a global Hash stored in your database, that uses simple ActiveRecord like methods for manipulation. Keep track of any global setting that you don't want to hard code into your Rails application.
 
-[![Gem Version](https://badge.fury.io/rb/rails-settings-cached.svg)](https://rubygems.org/gems/rails-settings-cached) [![build](https://github.com/huacnlee/rails-settings-cached/workflows/build/badge.svg)](https://github.com/huacnlee/rails-settings-cached/actions?query=workflow%3Abuild)
+[![Gem Version](https://badge.fury.io/rb/rails-app-settings.svg)](https://rubygems.org/gems/rails-app-settings) [![build](https://github.com/BioData/rails-app-settings/workflows/build/badge.svg)](https://github.com/BioData/rails-app-settings/actions?query=workflow%3Abuild)
 
 ## Installation
 
 Edit your Gemfile:
 
 ```bash
-bundle add rails-settings-cached
+bundle add rails-app-settings
 ```
 
 Generate your app settings:
@@ -34,15 +34,15 @@ Will create:
 - `app/models/app_config.rb`
 - `db/migrate/create_app_configs.rb`
 
-## 🚨 BREAKING CHANGES - v2.10.0
+## 🚨 Migrating From [rails-settings-cached](https://github.com/huacnlee/rails-settings-cached)
 The `RailsSettings` module was renamed to `RailsAppSettings` to avoid name collisions with [`ledermann/rails-settings`](https://github.com/ledermann/rails-settings) modules.
-If you were already using `rails-settings-cached` please change your application settings model's base class from `RailsSettings::Base` to `RailsAppSettings::Base` to make sure everything works as expected.
+If you were already using `rails-settings-cached` and want to migrate to this gem because of that - please change the base class of your application settings model from `RailsSettings::Base` to `RailsAppSettings::Base`.
 
 ## Important Naming Consideration
 
 ### Avoid Naming Your Model `Settings`
 
-If you are using both this gem (`rails-settings-cached`) and the [`ledermann/rails-settings`](https://github.com/ledermann/rails-settings) gem in your project, **do not** name your model `Settings`.
+If you are using both this gem (`rails-app-settings`) and the [`ledermann/rails-settings`](https://github.com/ledermann/rails-settings) gem in your project, **do not** name your model `Settings`.
 
 The `ledermann/rails-settings` gem already defines a model named `Settings`, and using the same name for your model will result in **namespace conflicts**. This could lead to unexpected behavior, bugs, and errors in your application.
 
@@ -497,47 +497,3 @@ RailsAppSettings.configure do
   self.cache_storage = ActiveSupport::Cache::RedisCacheStore.new(url: "redis://localhost:6379")
 end
 ```
-
-## Scoped Settings
-
-> 🚨 BREAK CHANGES WARNING:
-> rails-settings-cached 2.x has redesigned the API, the new version will compatible with the stored setting values by an older version.
-> When you want to upgrade 2.x, you must read the README again, and follow guides to change your Setting model.
-> 0.x stable branch: https://github.com/huacnlee/rails-settings-cached/tree/0.x
-
-- [Backward compatible to support 0.x scoped settings](docs/backward-compatible-to-scoped-settings.md)
-
-For new project / new user of rails-settings-cached. The [ActiveRecord::AttributeMethods::Serialization](https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html#method-i-serialize) is best choice.
-
-> This is reason of why rails-settings-cached 2.x removed **Scoped Settings** feature.
-
-For example:
-
-We wants a preferences setting for user.
-
-```rb
-class User < ActiveRecord::Base
-  serialize :preferences
-end
-
-@user = User.new
-@user.preferences[:receive_emails] = true
-@user.preferences[:public_email] = true
-@user.save
-```
-
-## Use cases:
-
-- [ruby-china/homeland](https://github.com/ruby-china/homeland) - master
-- [forem/forem](https://github.com/forem/forem) - 2.x
-- [siwapp/siwapp](https://github.com/siwapp/siwapp) - 2.x
-- [aidewoode/black_candy](https://github.com/aidewoode/black_candy) - 2.x
-- [huacnlee/bluedoc](https://github.com/huacnlee/bluedoc) - 2.x
-- [getzealot/zealot](https://github.com/getzealot/zealot) - 2.x
-- [kaishuu0123/rebacklogs](https://github.com/kaishuu0123/rebacklogs) - 2.x
-- [texterify/texterify](https://github.com/texterify/texterify) - 2.x
-- [mastodon/mastodon](https://github.com/mastodon/mastodon) - 0.6.x
-- [helpyio/helpy](https://github.com/helpyio/helpy) - 0.5.x
-- [maybe-finance/maybe](https://github.com/maybe-finance/maybe) - 2.x
-
-And more than [1K repositories](https://github.com/huacnlee/rails-settings-cached/network/dependents) used.

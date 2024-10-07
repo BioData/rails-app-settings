@@ -6,10 +6,10 @@ require "rails-app-settings/version"
 Gem::Specification.new do |s|
   s.name = "rails-app-settings"
   s.version = RailsAppSettings.version
-  s.authors = ["Jason Lee"]
-  s.email = "huacnlee@gmail.com"
+  s.authors = ["Roy Gal"]
+  s.email = "roygal@gmail.com"
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  s.homepage = "https://github.com/huacnlee/rails-settings-cached"
+  s.homepage = "https://github.com/BioData/rails-app-settings"
   s.require_paths = ["lib"]
   s.license = "MIT"
 
