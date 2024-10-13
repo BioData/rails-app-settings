@@ -1,9 +1,5 @@
 # Rails App Settings
 
-The best solution for store global settings in Rails applications.
-
-This gem will make managing a table of а global key, value pairs easy. Think of it like a global Hash stored in your database, that uses simple ActiveRecord like methods for manipulation. Keep track of any global setting that you don't want to hard code into your Rails application.
-
 [![Gem Version](https://badge.fury.io/rb/rails-app-settings.svg)](https://rubygems.org/gems/rails-app-settings) [![build](https://github.com/BioData/rails-app-settings/workflows/build/badge.svg)](https://github.com/BioData/rails-app-settings/actions?query=workflow%3Abuild)
 
 ## Installation
