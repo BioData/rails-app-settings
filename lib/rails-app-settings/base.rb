@@ -58,7 +58,7 @@ module RailsAppSettings
       end
 
       def cache_key
-        key_parts = ["rails-settings-cached"]
+        key_parts = ["rails-app-settings"]
         key_parts << @cache_prefix.call if @cache_prefix
         key_parts.join("/")
       end
