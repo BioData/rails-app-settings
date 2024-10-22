@@ -5,7 +5,7 @@ require "active_record/railtie"
 require "action_controller/railtie"
 
 Bundler.require(*Rails.groups)
-require "rails-settings-cached"
+require "rails-app-settings"
 
 module Dummy
   class Application < Rails::Application
