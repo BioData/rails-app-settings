@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-app-settings (1.0.2)
+    rails-app-settings (1.0.3)
       activerecord (>= 5.0.0)
       railties (>= 5.0.0)
 
